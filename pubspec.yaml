@@ -1,0 +1,66 @@
+name: flags
+description: A dating application for finding meaningful connections
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Firebase (Free tier)
+  firebase_core: ^3.6.0
+  firebase_auth: ^5.3.1
+  cloud_firestore: ^5.4.4
+  firebase_storage: ^12.3.2
+  firebase_messaging: ^15.1.3
+  
+  # WebRTC for video/audio calls (Free)
+  flutter_webrtc: ^0.9.47
+  livekit_client: ^1.4.0
+  
+  # UI Components
+  cupertino_icons: ^1.0.6
+  cached_network_image: ^3.3.0
+  google_fonts: ^6.1.0
+  flutter_svg: ^2.0.9
+  shimmer: ^3.0.0
+  
+  # State Management
+  provider: ^6.1.1
+  riverpod: ^2.4.9
+  
+  # Local Storage (Hive for offline support)
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.1
+  
+  # Image Handling
+  image_picker: ^1.0.5
+  photo_view: ^0.14.0
+  
+  # Chat & Media
+  audioplayers: ^5.2.1
+  video_player: ^2.8.1
+  file_picker: ^6.1.1
+  
+  # Utilities
+  intl: ^0.18.1
+  connectivity_plus: ^5.0.2
+  shared_preferences: ^2.2.2
+  url_launcher: ^6.2.1
+  flutter_local_notifications: ^16.3.0
+  http: ^1.1.0
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/audio/

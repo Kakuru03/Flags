@@ -1,0 +1,1824 @@
+[ +325 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[   +1 ms] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[   +1 ms] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[   +1 ms] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+[   +1 ms] executing: [C:\flutter\flutter/] git -c log.showSignature=false log HEAD -n 1 --pretty=format:%ad --date=iso
+[  +82 ms] Exit code 0 from: git -c log.showSignature=false log HEAD -n 1 --pretty=format:%ad --date=iso
+[        ] 2026-03-03 16:03:22 -0800
+[  +21 ms] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+[        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[   +4 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[ +102 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+[        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+[ +149 ms] executing: [c:\Users\PrInCe\Desktop\flags\flags/] C:\flutter\flutter\bin\cache\dart-sdk\bin\dart pub --suppress-analytics get --verbose --example --directory .
+FINE: Pub 3.11.1
+MSG : Resolving dependencies...
+SLVR: fact: flags is 1.0.0+1
+SLVR: derived: flags
+SLVR: fact: flags depends on flutter from sdk
+SLVR: fact: flags depends on firebase_core ^2.24.2
+SLVR: fact: flags depends on firebase_auth ^4.16.0
+SLVR: fact: flags depends on cloud_firestore ^4.14.0
+SLVR: fact: flags depends on firebase_storage ^11.5.0
+SLVR: fact: flags depends on firebase_messaging ^14.7.10
+SLVR: fact: flags depends on flutter_webrtc ^1.9.5
+SLVR: fact: flags depends on livekit_client ^1.4.0
+SLVR: fact: flags depends on cupertino_icons ^1.0.6
+SLVR: fact: flags depends on cached_network_image ^3.3.0
+SLVR: fact: flags depends on google_fonts ^6.1.0
+SLVR: fact: flags depends on flutter_svg ^2.0.9
+SLVR: fact: flags depends on shimmer ^3.0.0
+SLVR: fact: flags depends on provider ^6.1.1
+SLVR: fact: flags depends on riverpod ^2.4.9
+SLVR: fact: flags depends on hive_flutter ^1.1.0
+SLVR: fact: flags depends on path_provider ^2.1.1
+SLVR: fact: flags depends on image_picker ^1.0.5
+SLVR: fact: flags depends on photo_view ^0.14.0
+SLVR: fact: flags depends on audioplayers ^5.2.1
+SLVR: fact: flags depends on video_player ^2.8.1
+SLVR: fact: flags depends on file_picker ^6.1.1
+SLVR: fact: flags depends on intl ^0.18.1
+SLVR: fact: flags depends on connectivity_plus ^5.0.2
+SLVR: fact: flags depends on shared_preferences ^2.2.2
+SLVR: fact: flags depends on url_launcher ^6.2.1
+SLVR: fact: flags depends on flutter_local_notifications ^16.3.0
+SLVR: fact: flags depends on http ^1.1.0
+SLVR: fact: flags depends on flutter_test from sdk
+SLVR: fact: flags depends on flutter_lints ^3.0.1
+SLVR:   selecting flags
+SLVR:   derived: flutter_lints ^3.0.1
+SLVR:   derived: flutter_test from sdk
+SLVR:   derived: http ^1.1.0
+SLVR:   derived: flutter_local_notifications ^16.3.0
+SLVR:   derived: url_launcher ^6.2.1
+SLVR:   derived: shared_preferences ^2.2.2
+SLVR:   derived: connectivity_plus ^5.0.2
+SLVR:   derived: intl ^0.18.1
+SLVR:   derived: file_picker ^6.1.1
+SLVR:   derived: video_player ^2.8.1
+SLVR:   derived: audioplayers ^5.2.1
+SLVR:   derived: photo_view ^0.14.0
+SLVR:   derived: image_picker ^1.0.5
+SLVR:   derived: path_provider ^2.1.1
+SLVR:   derived: hive_flutter ^1.1.0
+SLVR:   derived: riverpod ^2.4.9
+SLVR:   derived: provider ^6.1.1
+SLVR:   derived: shimmer ^3.0.0
+SLVR:   derived: flutter_svg ^2.0.9
+SLVR:   derived: google_fonts ^6.1.0
+SLVR:   derived: cached_network_image ^3.3.0
+SLVR:   derived: cupertino_icons ^1.0.6
+SLVR:   derived: livekit_client ^1.4.0
+SLVR:   derived: flutter_webrtc ^1.9.5
+SLVR:   derived: firebase_messaging ^14.7.10
+SLVR:   derived: firebase_storage ^11.5.0
+SLVR:   derived: cloud_firestore ^4.14.0
+SLVR:   derived: firebase_auth ^4.16.0
+SLVR:   derived: firebase_core ^2.24.2
+SLVR:   derived: flutter from sdk
+IO  : Get versions from https://pub.dev/api/packages/firebase_core.
+IO  : Get versions from https://pub.dev/api/packages/firebase_auth.
+IO  : Get versions from https://pub.dev/api/packages/cloud_firestore.
+IO  : Get versions from https://pub.dev/api/packages/firebase_storage.
+IO  : Get versions from https://pub.dev/api/packages/firebase_messaging.
+IO  : Get versions from https://pub.dev/api/packages/flutter_webrtc.
+IO  : Get versions from https://pub.dev/api/packages/livekit_client.
+IO  : Get versions from https://pub.dev/api/packages/cached_network_image.
+IO  : Get versions from https://pub.dev/api/packages/google_fonts.
+IO  : Get versions from https://pub.dev/api/packages/flutter_svg.
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_auth
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/cloud_firestore
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_storage
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_messaging
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/flutter_webrtc
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/livekit_client
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/cached_network_image
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/google_fonts
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/flutter_svg
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #2 for fetching versions for "flutter_webrtc" from "https://pub.dev/api/packages/flutter_webrtc"
+IO  : Attempt #2 for fetching versions for "firebase_auth" from "https://pub.dev/api/packages/firebase_auth"
+IO  : Attempt #2 for fetching versions for "firebase_storage" from "https://pub.dev/api/packages/firebase_storage"
+IO  : Attempt #2 for fetching versions for "firebase_messaging" from "https://pub.dev/api/packages/firebase_messaging"
+IO  : Attempt #2 for fetching versions for "livekit_client" from "https://pub.dev/api/packages/livekit_client"
+IO  : Attempt #2 for fetching versions for "cached_network_image" from "https://pub.dev/api/packages/cached_network_image"
+IO  : Attempt #2 for fetching versions for "firebase_core" from "https://pub.dev/api/packages/firebase_core"
+IO  : Attempt #2 for fetching versions for "cloud_firestore" from "https://pub.dev/api/packages/cloud_firestore"
+IO  : Attempt #2 for fetching versions for "google_fonts" from "https://pub.dev/api/packages/google_fonts"
+IO  : Attempt #2 for fetching versions for "flutter_svg" from "https://pub.dev/api/packages/flutter_svg"
+IO  : HTTP GET https://pub.dev/api/packages/cached_network_image
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/cloud_firestore
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/flutter_webrtc
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_messaging
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_storage
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/google_fonts
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/flutter_svg
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/livekit_client
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_auth
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #3 for fetching versions for "cached_network_image" from "https://pub.dev/api/packages/cached_network_image"
+IO  : Attempt #3 for fetching versions for "cloud_firestore" from "https://pub.dev/api/packages/cloud_firestore"
+IO  : Attempt #3 for fetching versions for "firebase_core" from "https://pub.dev/api/packages/firebase_core"
+IO  : Attempt #3 for fetching versions for "flutter_webrtc" from "https://pub.dev/api/packages/flutter_webrtc"
+IO  : Attempt #3 for fetching versions for "google_fonts" from "https://pub.dev/api/packages/google_fonts"
+IO  : Attempt #3 for fetching versions for "livekit_client" from "https://pub.dev/api/packages/livekit_client"
+IO  : Attempt #3 for fetching versions for "firebase_messaging" from "https://pub.dev/api/packages/firebase_messaging"
+IO  : Attempt #3 for fetching versions for "flutter_svg" from "https://pub.dev/api/packages/flutter_svg"
+IO  : Attempt #3 for fetching versions for "firebase_storage" from "https://pub.dev/api/packages/firebase_storage"
+IO  : Attempt #3 for fetching versions for "firebase_auth" from "https://pub.dev/api/packages/firebase_auth"
+IO  : HTTP GET https://pub.dev/api/packages/flutter_webrtc
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/cached_network_image
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_messaging
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/cloud_firestore
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/livekit_client
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/google_fonts
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_storage
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/flutter_svg
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_auth
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #4 for fetching versions for "firebase_messaging" from "https://pub.dev/api/packages/firebase_messaging"
+IO  : Attempt #4 for fetching versions for "cached_network_image" from "https://pub.dev/api/packages/cached_network_image"
+IO  : Attempt #4 for fetching versions for "google_fonts" from "https://pub.dev/api/packages/google_fonts"
+IO  : Attempt #4 for fetching versions for "flutter_webrtc" from "https://pub.dev/api/packages/flutter_webrtc"
+IO  : Attempt #4 for fetching versions for "livekit_client" from "https://pub.dev/api/packages/livekit_client"
+IO  : Attempt #4 for fetching versions for "cloud_firestore" from "https://pub.dev/api/packages/cloud_firestore"
+IO  : Attempt #4 for fetching versions for "firebase_auth" from "https://pub.dev/api/packages/firebase_auth"
+IO  : Attempt #4 for fetching versions for "firebase_core" from "https://pub.dev/api/packages/firebase_core"
+IO  : Attempt #4 for fetching versions for "firebase_storage" from "https://pub.dev/api/packages/firebase_storage"
+IO  : Attempt #4 for fetching versions for "flutter_svg" from "https://pub.dev/api/packages/flutter_svg"
+IO  : HTTP GET https://pub.dev/api/packages/google_fonts
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/flutter_webrtc
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/cached_network_image
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/cloud_firestore
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/flutter_svg
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_auth
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/livekit_client
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_messaging
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_storage
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #5 for fetching versions for "google_fonts" from "https://pub.dev/api/packages/google_fonts"
+IO  : Attempt #5 for fetching versions for "flutter_webrtc" from "https://pub.dev/api/packages/flutter_webrtc"
+IO  : Attempt #5 for fetching versions for "cloud_firestore" from "https://pub.dev/api/packages/cloud_firestore"
+IO  : Attempt #5 for fetching versions for "flutter_svg" from "https://pub.dev/api/packages/flutter_svg"
+IO  : Attempt #5 for fetching versions for "cached_network_image" from "https://pub.dev/api/packages/cached_network_image"
+IO  : Attempt #5 for fetching versions for "firebase_auth" from "https://pub.dev/api/packages/firebase_auth"
+IO  : Attempt #5 for fetching versions for "livekit_client" from "https://pub.dev/api/packages/livekit_client"
+IO  : Attempt #5 for fetching versions for "firebase_messaging" from "https://pub.dev/api/packages/firebase_messaging"
+IO  : Attempt #5 for fetching versions for "firebase_core" from "https://pub.dev/api/packages/firebase_core"
+IO  : Attempt #5 for fetching versions for "firebase_storage" from "https://pub.dev/api/packages/firebase_storage"
+IO  : HTTP GET https://pub.dev/api/packages/flutter_webrtc
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_auth
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/cloud_firestore
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/google_fonts
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/flutter_svg
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/cached_network_image
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_messaging
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_storage
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/livekit_client
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #6 for fetching versions for "flutter_webrtc" from "https://pub.dev/api/packages/flutter_webrtc"
+IO  : Attempt #6 for fetching versions for "cloud_firestore" from "https://pub.dev/api/packages/cloud_firestore"
+IO  : Attempt #6 for fetching versions for "firebase_auth" from "https://pub.dev/api/packages/firebase_auth"
+IO  : Attempt #6 for fetching versions for "flutter_svg" from "https://pub.dev/api/packages/flutter_svg"
+IO  : Attempt #6 for fetching versions for "cached_network_image" from "https://pub.dev/api/packages/cached_network_image"
+IO  : Attempt #6 for fetching versions for "google_fonts" from "https://pub.dev/api/packages/google_fonts"
+IO  : Attempt #6 for fetching versions for "firebase_messaging" from "https://pub.dev/api/packages/firebase_messaging"
+IO  : Attempt #6 for fetching versions for "firebase_storage" from "https://pub.dev/api/packages/firebase_storage"
+IO  : Attempt #6 for fetching versions for "firebase_core" from "https://pub.dev/api/packages/firebase_core"
+IO  : Attempt #6 for fetching versions for "livekit_client" from "https://pub.dev/api/packages/livekit_client"
+IO  : HTTP GET https://pub.dev/api/packages/firebase_messaging
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/flutter_webrtc
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/flutter_svg
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/cached_network_image
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/google_fonts
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_auth
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_storage
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/livekit_client
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/cloud_firestore
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #7 for fetching versions for "firebase_messaging" from "https://pub.dev/api/packages/firebase_messaging"
+IO  : Attempt #7 for fetching versions for "flutter_webrtc" from "https://pub.dev/api/packages/flutter_webrtc"
+IO  : Attempt #7 for fetching versions for "flutter_svg" from "https://pub.dev/api/packages/flutter_svg"
+IO  : Attempt #7 for fetching versions for "cached_network_image" from "https://pub.dev/api/packages/cached_network_image"
+IO  : Attempt #7 for fetching versions for "google_fonts" from "https://pub.dev/api/packages/google_fonts"
+IO  : Attempt #7 for fetching versions for "firebase_storage" from "https://pub.dev/api/packages/firebase_storage"
+IO  : Attempt #7 for fetching versions for "firebase_auth" from "https://pub.dev/api/packages/firebase_auth"
+IO  : Attempt #7 for fetching versions for "cloud_firestore" from "https://pub.dev/api/packages/cloud_firestore"
+IO  : Attempt #7 for fetching versions for "livekit_client" from "https://pub.dev/api/packages/livekit_client"
+IO  : Attempt #7 for fetching versions for "firebase_core" from "https://pub.dev/api/packages/firebase_core"
+IO  : HTTP GET https://pub.dev/api/packages/flutter_svg
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/flutter_webrtc
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_auth
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_messaging
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/cached_network_image
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/cloud_firestore
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/livekit_client
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/google_fonts
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_storage
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/shimmer.
+IO  : HTTP GET https://pub.dev/api/packages/shimmer
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/provider.
+IO  : HTTP GET https://pub.dev/api/packages/provider
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/riverpod.
+IO  : HTTP GET https://pub.dev/api/packages/riverpod
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/hive_flutter.
+IO  : HTTP GET https://pub.dev/api/packages/hive_flutter
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/path_provider.
+IO  : HTTP GET https://pub.dev/api/packages/path_provider
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/image_picker.
+IO  : HTTP GET https://pub.dev/api/packages/image_picker
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/photo_view.
+IO  : HTTP GET https://pub.dev/api/packages/photo_view
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/audioplayers.
+IO  : HTTP GET https://pub.dev/api/packages/audioplayers
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/video_player.
+IO  : HTTP GET https://pub.dev/api/packages/video_player
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/file_picker.
+IO  : HTTP GET https://pub.dev/api/packages/file_picker
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #2 for fetching versions for "shimmer" from "https://pub.dev/api/packages/shimmer"
+IO  : HTTP GET https://pub.dev/api/packages/shimmer
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #2 for fetching versions for "provider" from "https://pub.dev/api/packages/provider"
+IO  : HTTP GET https://pub.dev/api/packages/provider
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #2 for fetching versions for "riverpod" from "https://pub.dev/api/packages/riverpod"
+IO  : Attempt #2 for fetching versions for "hive_flutter" from "https://pub.dev/api/packages/hive_flutter"
+IO  : HTTP GET https://pub.dev/api/packages/riverpod
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/hive_flutter
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #2 for fetching versions for "path_provider" from "https://pub.dev/api/packages/path_provider"
+IO  : Attempt #2 for fetching versions for "image_picker" from "https://pub.dev/api/packages/image_picker"
+IO  : HTTP GET https://pub.dev/api/packages/path_provider
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/image_picker
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #2 for fetching versions for "photo_view" from "https://pub.dev/api/packages/photo_view"
+IO  : HTTP GET https://pub.dev/api/packages/photo_view
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #2 for fetching versions for "audioplayers" from "https://pub.dev/api/packages/audioplayers"
+IO  : Attempt #2 for fetching versions for "video_player" from "https://pub.dev/api/packages/video_player"
+IO  : HTTP GET https://pub.dev/api/packages/audioplayers
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #2 for fetching versions for "file_picker" from "https://pub.dev/api/packages/file_picker"
+IO  : HTTP GET https://pub.dev/api/packages/video_player
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/file_picker
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #3 for fetching versions for "shimmer" from "https://pub.dev/api/packages/shimmer"
+IO  : Attempt #3 for fetching versions for "provider" from "https://pub.dev/api/packages/provider"
+IO  : HTTP GET https://pub.dev/api/packages/shimmer
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/provider
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #3 for fetching versions for "riverpod" from "https://pub.dev/api/packages/riverpod"
+IO  : Attempt #3 for fetching versions for "hive_flutter" from "https://pub.dev/api/packages/hive_flutter"
+IO  : HTTP GET https://pub.dev/api/packages/riverpod
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/hive_flutter
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #3 for fetching versions for "path_provider" from "https://pub.dev/api/packages/path_provider"
+IO  : Attempt #3 for fetching versions for "image_picker" from "https://pub.dev/api/packages/image_picker"
+IO  : HTTP GET https://pub.dev/api/packages/path_provider
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/image_picker
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #3 for fetching versions for "photo_view" from "https://pub.dev/api/packages/photo_view"
+IO  : Attempt #3 for fetching versions for "audioplayers" from "https://pub.dev/api/packages/audioplayers"
+IO  : HTTP GET https://pub.dev/api/packages/photo_view
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #3 for fetching versions for "video_player" from "https://pub.dev/api/packages/video_player"
+IO  : HTTP GET https://pub.dev/api/packages/audioplayers
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #3 for fetching versions for "file_picker" from "https://pub.dev/api/packages/file_picker"
+IO  : HTTP GET https://pub.dev/api/packages/video_player
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/file_picker
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #4 for fetching versions for "shimmer" from "https://pub.dev/api/packages/shimmer"
+IO  : Attempt #4 for fetching versions for "provider" from "https://pub.dev/api/packages/provider"
+IO  : HTTP GET https://pub.dev/api/packages/shimmer
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #4 for fetching versions for "riverpod" from "https://pub.dev/api/packages/riverpod"
+IO  : Attempt #4 for fetching versions for "hive_flutter" from "https://pub.dev/api/packages/hive_flutter"
+IO  : HTTP GET https://pub.dev/api/packages/provider
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #4 for fetching versions for "path_provider" from "https://pub.dev/api/packages/path_provider"
+IO  : Attempt #4 for fetching versions for "image_picker" from "https://pub.dev/api/packages/image_picker"
+IO  : HTTP GET https://pub.dev/api/packages/riverpod
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/hive_flutter
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/path_provider
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/image_picker
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #4 for fetching versions for "photo_view" from "https://pub.dev/api/packages/photo_view"
+IO  : Attempt #4 for fetching versions for "audioplayers" from "https://pub.dev/api/packages/audioplayers"
+IO  : Attempt #4 for fetching versions for "video_player" from "https://pub.dev/api/packages/video_player"
+IO  : Attempt #4 for fetching versions for "file_picker" from "https://pub.dev/api/packages/file_picker"
+IO  : HTTP GET https://pub.dev/api/packages/photo_view
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/audioplayers
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/video_player
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/file_picker
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #5 for fetching versions for "shimmer" from "https://pub.dev/api/packages/shimmer"
+IO  : Attempt #5 for fetching versions for "provider" from "https://pub.dev/api/packages/provider"
+IO  : Attempt #5 for fetching versions for "riverpod" from "https://pub.dev/api/packages/riverpod"
+IO  : Attempt #5 for fetching versions for "hive_flutter" from "https://pub.dev/api/packages/hive_flutter"
+IO  : HTTP GET https://pub.dev/api/packages/shimmer
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #5 for fetching versions for "path_provider" from "https://pub.dev/api/packages/path_provider"
+IO  : Attempt #5 for fetching versions for "image_picker" from "https://pub.dev/api/packages/image_picker"
+IO  : HTTP GET https://pub.dev/api/packages/provider
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #5 for fetching versions for "photo_view" from "https://pub.dev/api/packages/photo_view"
+IO  : Attempt #5 for fetching versions for "audioplayers" from "https://pub.dev/api/packages/audioplayers"
+IO  : HTTP GET https://pub.dev/api/packages/riverpod
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/hive_flutter
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #5 for fetching versions for "video_player" from "https://pub.dev/api/packages/video_player"
+IO  : HTTP GET https://pub.dev/api/packages/image_picker
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #5 for fetching versions for "file_picker" from "https://pub.dev/api/packages/file_picker"
+IO  : HTTP GET https://pub.dev/api/packages/path_provider
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/photo_view
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/video_player
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/audioplayers
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/file_picker
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #6 for fetching versions for "shimmer" from "https://pub.dev/api/packages/shimmer"
+IO  : Attempt #6 for fetching versions for "provider" from "https://pub.dev/api/packages/provider"
+IO  : Attempt #6 for fetching versions for "riverpod" from "https://pub.dev/api/packages/riverpod"
+IO  : Attempt #6 for fetching versions for "hive_flutter" from "https://pub.dev/api/packages/hive_flutter"
+IO  : Attempt #6 for fetching versions for "image_picker" from "https://pub.dev/api/packages/image_picker"
+IO  : Attempt #6 for fetching versions for "path_provider" from "https://pub.dev/api/packages/path_provider"
+IO  : Attempt #6 for fetching versions for "photo_view" from "https://pub.dev/api/packages/photo_view"
+IO  : Attempt #6 for fetching versions for "video_player" from "https://pub.dev/api/packages/video_player"
+IO  : Attempt #6 for fetching versions for "audioplayers" from "https://pub.dev/api/packages/audioplayers"
+IO  : HTTP GET https://pub.dev/api/packages/shimmer
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #6 for fetching versions for "file_picker" from "https://pub.dev/api/packages/file_picker"
+IO  : HTTP GET https://pub.dev/api/packages/provider
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/riverpod
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/hive_flutter
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/path_provider
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/image_picker
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/photo_view
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/video_player
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/audioplayers
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/file_picker
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #7 for fetching versions for "shimmer" from "https://pub.dev/api/packages/shimmer"
+IO  : Attempt #7 for fetching versions for "provider" from "https://pub.dev/api/packages/provider"
+IO  : Attempt #7 for fetching versions for "riverpod" from "https://pub.dev/api/packages/riverpod"
+IO  : Attempt #7 for fetching versions for "hive_flutter" from "https://pub.dev/api/packages/hive_flutter"
+IO  : Attempt #7 for fetching versions for "path_provider" from "https://pub.dev/api/packages/path_provider"
+IO  : Attempt #7 for fetching versions for "image_picker" from "https://pub.dev/api/packages/image_picker"
+IO  : Attempt #7 for fetching versions for "photo_view" from "https://pub.dev/api/packages/photo_view"
+IO  : Attempt #7 for fetching versions for "video_player" from "https://pub.dev/api/packages/video_player"
+IO  : Attempt #7 for fetching versions for "audioplayers" from "https://pub.dev/api/packages/audioplayers"
+IO  : Attempt #7 for fetching versions for "file_picker" from "https://pub.dev/api/packages/file_picker"
+IO  : HTTP GET https://pub.dev/api/packages/shimmer
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/riverpod
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/image_picker
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/photo_view
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/provider
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/audioplayers
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/hive_flutter
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/path_provider
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/video_player
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/file_picker
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/intl.
+IO  : HTTP GET https://pub.dev/api/packages/intl
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/connectivity_plus.
+IO  : HTTP GET https://pub.dev/api/packages/connectivity_plus
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/shared_preferences.
+IO  : HTTP GET https://pub.dev/api/packages/shared_preferences
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/url_launcher.
+IO  : HTTP GET https://pub.dev/api/packages/url_launcher
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/flutter_local_notifications.
+IO  : HTTP GET https://pub.dev/api/packages/flutter_local_notifications
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/http.
+IO  : HTTP GET https://pub.dev/api/packages/http
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/flutter_lints.
+IO  : HTTP GET https://pub.dev/api/packages/flutter_lints
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: dev
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/firebase_core_platform_interface.
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core_platform_interface
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/firebase_core_web.
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core_web
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | user-agent: Dart pub 3.11.1
+IO  : Get versions from https://pub.dev/api/packages/meta.
+IO  : HTTP GET https://pub.dev/api/packages/meta
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #2 for fetching versions for "intl" from "https://pub.dev/api/packages/intl"
+IO  : HTTP GET https://pub.dev/api/packages/intl
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #2 for fetching versions for "connectivity_plus" from "https://pub.dev/api/packages/connectivity_plus"
+IO  : HTTP GET https://pub.dev/api/packages/connectivity_plus
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #2 for fetching versions for "shared_preferences" from "https://pub.dev/api/packages/shared_preferences"
+IO  : Attempt #2 for fetching versions for "url_launcher" from "https://pub.dev/api/packages/url_launcher"
+IO  : HTTP GET https://pub.dev/api/packages/shared_preferences
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/url_launcher
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #2 for fetching versions for "flutter_local_notifications" from "https://pub.dev/api/packages/flutter_local_notifications"
+IO  : Attempt #2 for fetching versions for "http" from "https://pub.dev/api/packages/http"
+IO  : HTTP GET https://pub.dev/api/packages/flutter_local_notifications
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #2 for fetching versions for "flutter_lints" from "https://pub.dev/api/packages/flutter_lints"
+IO  : HTTP GET https://pub.dev/api/packages/http
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #2 for fetching versions for "firebase_core_platform_interface" from "https://pub.dev/api/packages/firebase_core_platform_interface"
+IO  : HTTP GET https://pub.dev/api/packages/flutter_lints
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: dev
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core_platform_interface
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #2 for fetching versions for "firebase_core_web" from "https://pub.dev/api/packages/firebase_core_web"
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core_web
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #2 for fetching versions for "meta" from "https://pub.dev/api/packages/meta"
+IO  : HTTP GET https://pub.dev/api/packages/meta
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #3 for fetching versions for "intl" from "https://pub.dev/api/packages/intl"
+IO  : HTTP GET https://pub.dev/api/packages/intl
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #3 for fetching versions for "connectivity_plus" from "https://pub.dev/api/packages/connectivity_plus"
+IO  : HTTP GET https://pub.dev/api/packages/connectivity_plus
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #3 for fetching versions for "url_launcher" from "https://pub.dev/api/packages/url_launcher"
+IO  : Attempt #3 for fetching versions for "shared_preferences" from "https://pub.dev/api/packages/shared_preferences"
+IO  : Attempt #3 for fetching versions for "flutter_local_notifications" from "https://pub.dev/api/packages/flutter_local_notifications"
+IO  : HTTP GET https://pub.dev/api/packages/shared_preferences
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/url_launcher
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #3 for fetching versions for "http" from "https://pub.dev/api/packages/http"
+IO  : Attempt #3 for fetching versions for "flutter_lints" from "https://pub.dev/api/packages/flutter_lints"
+IO  : Attempt #3 for fetching versions for "firebase_core_platform_interface" from "https://pub.dev/api/packages/firebase_core_platform_interface"
+IO  : HTTP GET https://pub.dev/api/packages/flutter_local_notifications
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/http
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/flutter_lints
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: dev
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core_platform_interface
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #3 for fetching versions for "firebase_core_web" from "https://pub.dev/api/packages/firebase_core_web"
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core_web
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #3 for fetching versions for "meta" from "https://pub.dev/api/packages/meta"
+IO  : HTTP GET https://pub.dev/api/packages/meta
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #4 for fetching versions for "intl" from "https://pub.dev/api/packages/intl"
+IO  : Attempt #4 for fetching versions for "connectivity_plus" from "https://pub.dev/api/packages/connectivity_plus"
+IO  : HTTP GET https://pub.dev/api/packages/intl
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/connectivity_plus
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #4 for fetching versions for "shared_preferences" from "https://pub.dev/api/packages/shared_preferences"
+IO  : Attempt #4 for fetching versions for "url_launcher" from "https://pub.dev/api/packages/url_launcher"
+IO  : Attempt #4 for fetching versions for "flutter_local_notifications" from "https://pub.dev/api/packages/flutter_local_notifications"
+IO  : Attempt #4 for fetching versions for "http" from "https://pub.dev/api/packages/http"
+IO  : HTTP GET https://pub.dev/api/packages/shared_preferences
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #4 for fetching versions for "flutter_lints" from "https://pub.dev/api/packages/flutter_lints"
+IO  : HTTP GET https://pub.dev/api/packages/url_launcher
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #4 for fetching versions for "firebase_core_platform_interface" from "https://pub.dev/api/packages/firebase_core_platform_interface"
+IO  : HTTP GET https://pub.dev/api/packages/flutter_local_notifications
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/http
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #4 for fetching versions for "firebase_core_web" from "https://pub.dev/api/packages/firebase_core_web"
+IO  : HTTP GET https://pub.dev/api/packages/flutter_lints
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: dev
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core_platform_interface
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core_web
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #4 for fetching versions for "meta" from "https://pub.dev/api/packages/meta"
+IO  : HTTP GET https://pub.dev/api/packages/meta
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #5 for fetching versions for "intl" from "https://pub.dev/api/packages/intl"
+IO  : Attempt #5 for fetching versions for "connectivity_plus" from "https://pub.dev/api/packages/connectivity_plus"
+IO  : Attempt #5 for fetching versions for "shared_preferences" from "https://pub.dev/api/packages/shared_preferences"
+IO  : Attempt #5 for fetching versions for "url_launcher" from "https://pub.dev/api/packages/url_launcher"
+IO  : HTTP GET https://pub.dev/api/packages/intl
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #5 for fetching versions for "flutter_local_notifications" from "https://pub.dev/api/packages/flutter_local_notifications"
+IO  : Attempt #5 for fetching versions for "http" from "https://pub.dev/api/packages/http"
+IO  : HTTP GET https://pub.dev/api/packages/connectivity_plus
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #5 for fetching versions for "flutter_lints" from "https://pub.dev/api/packages/flutter_lints"
+IO  : Attempt #5 for fetching versions for "firebase_core_platform_interface" from "https://pub.dev/api/packages/firebase_core_platform_interface"
+IO  : Attempt #5 for fetching versions for "firebase_core_web" from "https://pub.dev/api/packages/firebase_core_web"
+IO  : HTTP GET https://pub.dev/api/packages/shared_preferences
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/url_launcher
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/flutter_local_notifications
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core_platform_interface
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/http
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: direct
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/flutter_lints
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | X-Pub-Reason: dev
+    | user-agent: Dart pub 3.11.1
+IO  : HTTP GET https://pub.dev/api/packages/firebase_core_web
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | user-agent: Dart pub 3.11.1
+IO  : Attempt #5 for fetching versions for "meta" from "https://pub.dev/api/packages/meta"
+IO  : HTTP GET https://pub.dev/api/packages/meta
+    | Accept: application/vnd.pub.v2+json
+    | X-Pub-OS: windows
+    | X-Pub-Command: get
+    | X-Pub-Session-ID: F1CD6E23-B24E-4682-A98D-56860F2B30D2
+    | X-Pub-Environment: flutter_cli:get
+    | user-agent: Dart pub 3.11.1
