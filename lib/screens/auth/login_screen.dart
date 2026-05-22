@@ -48,13 +48,15 @@ class _LoginScreenState extends State<LoginScreen> {
           await Helpers.saveToCache('remember_email', _emailController.text);
         }
         
+        // Show snackbar before navigating to avoid using a deactivated context.
+        Helpers.showSnackBar(context, 'Welcome back, ${user.displayName ?? user.email}!');
+
         // Navigate to home screen
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const HomeScreen()),
         );
-        
-        Helpers.showSnackBar(context, 'Welcome back, ${user.displayName ?? user.email}!');
+
       }
     } on FirebaseAuthException catch (e) {
       String errorMessage;
@@ -78,9 +80,11 @@ class _LoginScreenState extends State<LoginScreen> {
     } catch (e) {
       Helpers.showSnackBar(context, 'An error occurred. Please try again.', isError: true);
     } finally {
+      if (!mounted) return;
       setState(() => _isLoading = false);
     }
   }
+
   
   Future<void> _handleGoogleSignIn() async {
     setState(() => _isLoading = true);
@@ -99,9 +103,11 @@ class _LoginScreenState extends State<LoginScreen> {
     } catch (e) {
       Helpers.showSnackBar(context, 'Google sign in failed. Please try again.', isError: true);
     } finally {
+      if (!mounted) return;
       setState(() => _isLoading = false);
     }
   }
+
   
   Future<void> _handleAppleSignIn() async {
     setState(() => _isLoading = true);

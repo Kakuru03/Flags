@@ -7,6 +7,18 @@ import '../models/user_model.dart';
 import '../utils/error_handler.dart';
 
 class AuthService extends ChangeNotifier {
+  // Refreshes current user model from Firestore so UI updates immediately after edits.
+  Future<void> refreshCurrentUserModel() async {
+    final user = _auth.currentUser;
+    if (user == null) return;
+
+    final DocumentSnapshot userDoc = await _firestore.collection('users').doc(user.uid).get();
+    if (!userDoc.exists) return;
+
+    _currentUserModel = UserModel.fromMap(user.uid, userDoc.data() as Map<String, dynamic>);
+    notifyListeners();
+  }
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   User? _currentUser;

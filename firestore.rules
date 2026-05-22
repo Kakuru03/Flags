@@ -18,14 +18,17 @@ service cloud.firestore {
     // Matches - allow authenticated users to read/write their matches
     match /matches/{matchId} {
       allow read: if request.auth != null;
-      allow write: if request.auth != null;
+      allow create, update, delete: if request.auth != null;
     }
+
     
     // Chats - allow authenticated users to read/write their chats
+    // Note: chat membership isn't enforced here; you can tighten later.
     match /chats/{chatId} {
       allow read: if request.auth != null;
       allow write: if request.auth != null;
     }
+
     
     // Messages subcollection
     match /chats/{chatId}/messages/{messageId} {
@@ -41,10 +44,16 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
     
-    // Admins collection - allow authenticated users to read, write only via Firebase Console
+    // Admins collection
+    // - Any authenticated user may read *only their own* admin doc (used by AuthService.isAdmin)
+    // - Writes are admin-only (typically via Firebase Console / Admin SDK)
     match /admins/{adminId} {
-      allow read: if request.auth != null;
+      allow read: if request.auth != null && request.auth.uid == adminId;
       allow write: if false;
     }
+
+    // Optional: allow authenticated users to read their own match-related chat messages by checking membership
+    // (your app stores chats as /chats/{chatId}, but doesn't model membership in rules yet)
+
   }
 }

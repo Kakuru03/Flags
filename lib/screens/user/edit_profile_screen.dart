@@ -17,6 +17,10 @@ class EditProfileScreen extends StatefulWidget {
 class _EditProfileScreenState extends State<EditProfileScreen> {
   final _formKey = GlobalKey<FormState>();
   final StorageService _storageService = StorageService();
+
+  bool _isPrivate = false;
+  bool _isFrozen = false;
+
   
   late TextEditingController _displayNameController;
   late TextEditingController _bioController;
@@ -44,6 +48,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _selectedGender = user?.gender;
     _selectedSeeking = user?.seeking;
     _existingImages = user?.photos ?? [];
+    _isPrivate = user?.isPrivate ?? false;
+    _isFrozen = user?.isFrozen ?? false;
   }
 
   @override
@@ -111,12 +117,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         'seeking': _selectedSeeking,
         'interests': interests,
         'photos': allImageUrls,
+        'isPrivate': _isPrivate,
       });
       
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Profile updated successfully!')),
       );
-      
+
+      // Refresh cached profile so ProfileScreen updates immediately
+      await authService.refreshCurrentUserModel();
+
+      if (!mounted) return;
       Navigator.pop(context);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -319,6 +330,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       border: OutlineInputBorder(),
                       hintText: 'e.g., Music, Travel, Sports (comma separated)',
                     ),
+                  ),
+                  const SizedBox(height: 16),
+
+                  // Private Account
+                  SwitchListTile(
+                    value: _isPrivate,
+                    onChanged: (value) => setState(() => _isPrivate = value),
+                    title: const Text('Private account'),
+                    subtitle: Text(_isPrivate ? 'Only matches can see you' : 'Everyone can see you'),
                   ),
                 ],
               ),
