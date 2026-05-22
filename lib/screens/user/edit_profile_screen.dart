@@ -129,9 +129,36 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
       if (!mounted) return;
       Navigator.pop(context);
-    } catch (e) {
+    } catch (e, stackTrace) {
+      // Log full error details to console (including FirebaseException code/message)
+      // so permission/config issues are immediately visible.
+      // ignore: avoid_print
+      debugPrint('=== EditProfileScreen error ===');
+      debugPrint('context: _saveProfile');
+      debugPrint('error runtimeType: ${e.runtimeType}');
+      debugPrint('error toString: $e');
+      debugPrint('error (full): ${e.toString()}');
+      debugPrint('stackTrace: $stackTrace');
+
+      // If Firebase returned a FirebaseException, also print its structured fields.
+      // ignore: avoid_print
+      final dynamic eDynamic = e;
+      try {
+        // ignore: avoid_print
+        debugPrint('--- Firebase structured error (if available) ---');
+        debugPrint('firebaseErrorCode: ${eDynamic.code}');
+        debugPrint('firebaseMessage: ${eDynamic.message}');
+        debugPrint('firebaseStatus: ${eDynamic.status}');
+        debugPrint('firebaseDetails: ${eDynamic.details}');
+      } catch (_) {
+        // ignore: avoid_print
+        debugPrint('No FirebaseException structured fields available for: ${e.runtimeType}');
+      }
+
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error updating profile: $e')),
+        const SnackBar(
+          content: Text('Error updating profile. Check console for details.'),
+        ),
       );
     } finally {
       setState(() => _isLoading = false);
