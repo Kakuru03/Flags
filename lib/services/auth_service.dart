@@ -111,8 +111,12 @@ class AuthService extends ChangeNotifier {
       User? user = result.user;
       if (user != null) {
         // Fetch user data from Firestore
-        DocumentSnapshot userDoc = await _firestore.collection('users').doc(user.uid).get();
-        
+        final userRef = _firestore.collection('users').doc(user.uid);
+        if (kDebugMode) {
+          print('[AuthService.loginWithEmail] Reading user doc at: users/${user.uid}');
+        }
+        DocumentSnapshot userDoc = await userRef.get();
+
         if (userDoc.exists) {
           UserModel userModel = UserModel.fromMap(user.uid, userDoc.data() as Map<String, dynamic>);
           
@@ -127,9 +131,21 @@ class AuthService extends ChangeNotifier {
           }
           
           // Update last active
-          await _firestore.collection('users').doc(user.uid).update({
-            'lastActive': DateTime.now().toIso8601String(),
-          });
+          try {
+            final userRef = _firestore.collection('users').doc(user.uid);
+            if (kDebugMode) {
+              print('[AuthService.loginWithEmail] Updating lastActive at: users/${user.uid}');
+            }
+            await userRef.update({
+              // Keep Firestore timestamp consistent with UserModel parsing
+              'lastActive': FieldValue.serverTimestamp(),
+            });
+          } catch (e) {
+            if (kDebugMode) {
+              print('[AuthService.loginWithEmail] permission/failed updating lastActive for users/${user.uid}: $e');
+            }
+            rethrow;
+          }
           
           _currentUserModel = userModel;
           _setStatus(ErrorStatus.success);

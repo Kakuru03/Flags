@@ -1,8 +1,10 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:image_picker/image_picker.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+
 import '../../services/auth_service.dart';
 import '../../services/storage_service.dart';
 
@@ -21,35 +23,135 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   bool _isPrivate = false;
   bool _isFrozen = false;
 
-  
   late TextEditingController _displayNameController;
   late TextEditingController _bioController;
   late TextEditingController _interestsController;
-  
+
   final List<File> _selectedImages = [];
   List<String> _existingImages = [];
   DateTime? _selectedDate;
   String? _selectedGender;
   String? _selectedSeeking;
-  
+
   bool _isLoading = false;
+
+  bool _isDirty = false;
+  bool _isSaving = false;
+  String? _initialDisplayName;
+  String? _initialBio;
+  String? _initialInterestsCsv;
+  DateTime? _initialDate;
+  String? _initialGender;
+  String? _initialSeeking;
+  bool _initialPrivate = false;
+  List<String> _initialPhotos = [];
+
+  void _recomputeDirty() {
+    final display = _displayNameController.text.trim();
+    final bio = _bioController.text.trim();
+    final interestsCsv = _interestsController.text.trim();
+
+    final interestsNormalized = interestsCsv
+        .split(',')
+        .map((e) => e.trim())
+        .where((e) => e.isNotEmpty)
+        .join(', ');
+
+    final initialInterestsNormalized = (_initialInterestsCsv ?? '')
+        .split(',')
+        .map((e) => e.trim())
+        .where((e) => e.isNotEmpty)
+        .join(', ');
+
+    final initialDateIso = _initialDate?.toIso8601String();
+    final selectedDateIso = _selectedDate?.toIso8601String();
+
+    final photosChanged =
+        !_listEquals(_existingImages, _initialPhotos) || _selectedImages.isNotEmpty;
+
+    final dirty =
+        display != (_initialDisplayName ?? '') ||
+        bio != (_initialBio ?? '') ||
+        interestsNormalized != initialInterestsNormalized ||
+        selectedDateIso != initialDateIso ||
+        _selectedGender != _initialGender ||
+        _selectedSeeking != _initialSeeking ||
+        _isPrivate != _initialPrivate ||
+        photosChanged;
+
+    if (_isDirty != dirty) {
+      setState(() => _isDirty = dirty);
+    }
+  }
+
+  bool _listEquals(List<String> a, List<String> b) {
+    if (a.length != b.length) return false;
+    for (var i = 0; i < a.length; i++) {
+      if (a[i] != b[i]) return false;
+    }
+    return true;
+  }
+
+  Future<bool> _onWillPop() async {
+    if (!_isDirty) return true;
+    if (_isLoading || _isSaving) return false;
+
+    final result = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Discard changes?'),
+        content: const Text('You have unsaved changes. Save before leaving?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () async {
+              Navigator.of(context).pop(false);
+              await _saveProfile();
+            },
+            child: const Text('Save'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Discard'),
+          ),
+        ],
+      ),
+    );
+
+    return result ?? false;
+  }
 
   @override
   void initState() {
     super.initState();
     final user = Provider.of<AuthService>(context, listen: false).currentUserModel;
-    
-    _displayNameController = TextEditingController(text: user?.displayName ?? '');
-    _bioController = TextEditingController(text: user?.bio ?? '');
-    _interestsController = TextEditingController(
-      text: user?.interests.join(', ') ?? '',
-    );
-    _selectedDate = user?.dateOfBirth;
-    _selectedGender = user?.gender;
-    _selectedSeeking = user?.seeking;
-    _existingImages = user?.photos ?? [];
-    _isPrivate = user?.isPrivate ?? false;
+
+    _initialDisplayName = user?.displayName ?? '';
+    _initialBio = user?.bio ?? '';
+    _initialInterestsCsv = user?.interests.join(', ') ?? '';
+    _initialDate = user?.dateOfBirth;
+    _initialGender = user?.gender;
+    _initialSeeking = user?.seeking;
+    _initialPrivate = user?.isPrivate ?? false;
+    _initialPhotos = List<String>.from(user?.photos ?? []);
+
+    _displayNameController = TextEditingController(text: _initialDisplayName);
+    _bioController = TextEditingController(text: _initialBio);
+    _interestsController = TextEditingController(text: _initialInterestsCsv);
+
+    _selectedDate = _initialDate;
+    _selectedGender = _initialGender;
+    _selectedSeeking = _initialSeeking;
+    _existingImages = List<String>.from(_initialPhotos);
+    _isPrivate = _initialPrivate;
     _isFrozen = user?.isFrozen ?? false;
+
+    _displayNameController.addListener(_recomputeDirty);
+    _bioController.addListener(_recomputeDirty);
+    _interestsController.addListener(_recomputeDirty);
   }
 
   @override
@@ -162,31 +264,44 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       );
     } finally {
       setState(() => _isLoading = false);
+      _isSaving = false;
+      _recomputeDirty();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Edit Profile'),
-        actions: [
-          TextButton(
-            onPressed: _isLoading ? null : _saveProfile,
-            child: const Text('Save', style: TextStyle(color: Colors.white)),
-          ),
-        ],
-      ),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : Form(
-              key: _formKey,
-              child: ListView(
-                padding: const EdgeInsets.all(16),
-                children: [
+    return PopScope(
+      canPop: true,
+      onPopInvoked: (didPop) async {
+        if (!didPop) {
+          final shouldPop = await _onWillPop();
+          if (!mounted) return;
+          if (shouldPop) Navigator.of(context).pop();
+        }
+      },
+      child: Scaffold(
+
+        appBar: AppBar(
+          title: const Text('Edit Profile'),
+          actions: [
+            TextButton(
+              onPressed: _isLoading ? null : _saveProfile,
+              child: const Text('Save', style: TextStyle(color: Colors.white)),
+            ),
+          ],
+        ),
+        body: _isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : Form(
+                key: _formKey,
+                child: ListView(
+                  padding: const EdgeInsets.all(16),
+                  children: [
                   // Photos
                   const Text('Photos', style: TextStyle(fontWeight: FontWeight.bold)),
                   const SizedBox(height: 8),
+
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -370,6 +485,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ],
               ),
             ),
+      ),
     );
   }
 }

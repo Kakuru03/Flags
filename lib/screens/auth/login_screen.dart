@@ -6,6 +6,8 @@ import '../../utils/helpers.dart';
 import '../../utils/validators.dart';
 import 'register_screen.dart';
 import '../user/home_screen.dart';
+import '../admin/admin_dashboard.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -51,11 +53,15 @@ class _LoginScreenState extends State<LoginScreen> {
         // Show snackbar before navigating to avoid using a deactivated context.
         Helpers.showSnackBar(context, 'Welcome back, ${user.displayName ?? user.email}!');
 
-        // Navigate to home screen
+        // Navigate based on role
+        final bool isAdmin = await authService.isAdmin(user.uid);
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
+          MaterialPageRoute(
+            builder: (context) => isAdmin ? const AdminDashboard() : const HomeScreen(),
+          ),
         );
+
 
       }
     } on FirebaseAuthException catch (e) {
@@ -94,12 +100,16 @@ class _LoginScreenState extends State<LoginScreen> {
       final user = await authService.signInWithGoogle();
       
       if (user != null) {
+        final bool isAdmin = await authService.isAdmin(user.uid);
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
+          MaterialPageRoute(
+            builder: (context) => isAdmin ? const AdminDashboard() : const HomeScreen(),
+          ),
         );
         Helpers.showSnackBar(context, 'Successfully signed in with Google!');
       }
+
     } catch (e) {
       Helpers.showSnackBar(context, 'Google sign in failed. Please try again.', isError: true);
     } finally {
@@ -117,12 +127,16 @@ class _LoginScreenState extends State<LoginScreen> {
       final user = await authService.signInWithApple();
       
       if (user != null) {
+        final bool isAdmin = await authService.isAdmin(user.uid);
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
+          MaterialPageRoute(
+            builder: (context) => isAdmin ? const AdminDashboard() : const HomeScreen(),
+          ),
         );
         Helpers.showSnackBar(context, 'Successfully signed in with Apple!');
       }
+
     } catch (e) {
       Helpers.showSnackBar(context, 'Apple sign in failed. Please try again.', isError: true);
     } finally {

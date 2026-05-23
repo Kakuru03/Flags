@@ -67,6 +67,24 @@ class UserModel {
     };
   }
   
+  static DateTime? _parseDateTime(dynamic value) {
+    if (value == null) return null;
+
+    if (value is Timestamp) {
+      return value.toDate();
+    }
+
+    if (value is String) {
+      return DateTime.tryParse(value);
+    }
+
+    if (value is int) {
+      return DateTime.fromMillisecondsSinceEpoch(value);
+    }
+
+    return null;
+  }
+
   factory UserModel.fromMap(String uid, Map<String, dynamic> map) {
     return UserModel(
       uid: uid,
@@ -83,12 +101,13 @@ class UserModel {
       isPrivate: map['isPrivate'] ?? false,
       isFrozen: map['isFrozen'] ?? false,
       matchedWithUid: map['matchedWithUid'],
-      createdAt: map['createdAt'] != null ? (map['createdAt'] as Timestamp).toDate() : null,
-      lastActive: map['lastActive'] != null ? (map['lastActive'] as Timestamp).toDate() : null,
+      createdAt: _parseDateTime(map['createdAt']),
+      lastActive: _parseDateTime(map['lastActive']),
       reportCount: map['reportCount'] ?? 0,
       isBanned: map['isBanned'] ?? false,
       banReason: map['banReason'],
     );
   }
 }
+
 
