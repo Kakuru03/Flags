@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../services/auth_service.dart';
+import '../../config/app_config.dart';
 import '../../utils/helpers.dart';
 import '../../utils/validators.dart';
 import 'register_screen.dart';
 import '../user/home_screen.dart';
+import '../user/interests_screen.dart';
 import '../admin/admin_dashboard.dart';
 
 
@@ -20,47 +22,54 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  
+
   bool _isLoading = false;
   bool _obscurePassword = true;
   bool _rememberMe = false;
-  
+
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
-  
+
   Future<void> _handleLogin() async {
     if (!_formKey.currentState!.validate()) return;
-    
+
     setState(() => _isLoading = true);
-    
+
     try {
       final authService = Provider.of<AuthService>(context, listen: false);
       final user = await authService.loginWithEmail(
         _emailController.text.trim(),
         _passwordController.text.trim(),
       );
-      
+
       if (user != null) {
         // Save remember me preference
         if (_rememberMe) {
           await Helpers.saveToCache('remember_email', _emailController.text);
         }
-        
+
         // Show snackbar before navigating to avoid using a deactivated context.
         Helpers.showSnackBar(context, 'Welcome back, ${user.displayName ?? user.email}!');
 
-        // Navigate based on role
-        final bool isAdmin = await authService.isAdmin(user.uid);
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => isAdmin ? const AdminDashboard() : const HomeScreen(),
-          ),
-        );
+        // Use direct email comparison — no Firestore lookup needed
+        final bool isAdmin = authService.isCurrentUserAdmin;
+        // Seed admin doc in background (for Firestore rule-based features)
+        authService.isAdmin(user.uid);
+        if (!mounted) return;
+        if (isAdmin) {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (_) => const AdminDashboard()));
+        } else if (user.interests.isEmpty) {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (_) => const InterestsScreen()));
+        } else {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (_) => const HomeScreen()));
+        }
 
 
       }
@@ -91,23 +100,28 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  
+
   Future<void> _handleGoogleSignIn() async {
     setState(() => _isLoading = true);
-    
+
     try {
       final authService = Provider.of<AuthService>(context, listen: false);
       final user = await authService.signInWithGoogle();
-      
+
       if (user != null) {
-        final bool isAdmin = await authService.isAdmin(user.uid);
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => isAdmin ? const AdminDashboard() : const HomeScreen(),
-          ),
-        );
+        final bool isAdmin = authService.isCurrentUserAdmin;
+        if (!mounted) return;
         Helpers.showSnackBar(context, 'Successfully signed in with Google!');
+        if (isAdmin) {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (_) => const AdminDashboard()));
+        } else if (user.interests.isEmpty) {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (_) => const InterestsScreen()));
+        } else {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (_) => const HomeScreen()));
+        }
       }
 
     } catch (e) {
@@ -118,14 +132,14 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  
+
   Future<void> _handleAppleSignIn() async {
     setState(() => _isLoading = true);
-    
+
     try {
       final authService = Provider.of<AuthService>(context, listen: false);
       final user = await authService.signInWithApple();
-      
+
       if (user != null) {
         final bool isAdmin = await authService.isAdmin(user.uid);
         Navigator.pushReplacement(
@@ -143,24 +157,24 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() => _isLoading = false);
     }
   }
-  
+
   Future<void> _forgotPassword() async {
     if (_emailController.text.isEmpty) {
       Helpers.showSnackBar(context, 'Please enter your email address first.', isError: true);
       return;
     }
-    
+
     if (Validators.validateEmail(_emailController.text) != null) {
       Helpers.showSnackBar(context, 'Please enter a valid email address.', isError: true);
       return;
     }
-    
+
     setState(() => _isLoading = true);
-    
+
     try {
       final authService = Provider.of<AuthService>(context, listen: false);
       await authService.resetPassword(_emailController.text.trim());
-      
+
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -183,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() => _isLoading = false);
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -241,7 +255,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   const SizedBox(height: 48),
-                  
+
                   // Login Form
                   Container(
                     padding: const EdgeInsets.all(24),
@@ -280,7 +294,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             onFieldSubmitted: (_) => _handleLogin(),
                           ),
                           const SizedBox(height: 16),
-                          
+
                           // Password Field
                           TextFormField(
                             controller: _passwordController,
@@ -312,7 +326,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             onFieldSubmitted: (_) => _handleLogin(),
                           ),
                           const SizedBox(height: 12),
-                          
+
                           // Remember Me & Forgot Password
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -344,7 +358,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                           const SizedBox(height: 24),
-                          
+
                           // Login Button
                           ElevatedButton(
                             onPressed: _isLoading ? null : _handleLogin,
@@ -372,7 +386,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                           ),
                           const SizedBox(height: 16),
-                          
+
                           // OR Divider
                           Row(
                             children: [
@@ -398,7 +412,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                           const SizedBox(height: 16),
-                          
+
                           // Social Login Buttons
                           Row(
                             children: [
@@ -443,9 +457,9 @@ Expanded(
                       ),
                     ),
                   ),
-                  
+
                   const SizedBox(height: 24),
-                  
+
                   // Sign Up Link
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -474,9 +488,9 @@ Expanded(
                       ),
                     ],
                   ),
-                  
+
                   const SizedBox(height: 16),
-                  
+
                   // Terms and Conditions
                   Text(
                     'By continuing, you agree to our Terms of Service and Privacy Policy',

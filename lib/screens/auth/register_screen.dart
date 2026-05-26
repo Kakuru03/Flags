@@ -5,7 +5,6 @@ import '../../services/auth_service.dart';
 import '../../utils/helpers.dart';
 import '../../utils/validators.dart';
 import 'login_screen.dart';
-import '../user/edit_profile_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -67,15 +66,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
       );
       
       if (user != null) {
-        // Navigate to profile setup
+        // Sign out so user must log in explicitly
+        await authService.logout();
+        if (!mounted) return;
+        Helpers.showSnackBar(context, 'Account created! Please sign in to continue.');
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-            builder: (context) => const EditProfileScreen(isFirstTime: true),
-          ),
+          MaterialPageRoute(builder: (context) => const LoginScreen()),
         );
-        
-        Helpers.showSnackBar(context, 'Welcome to Flags! Please complete your profile.');
       }
     } on FirebaseAuthException catch (e) {
       String errorMessage;

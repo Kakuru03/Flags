@@ -129,7 +129,12 @@ class _ProfileCardState extends State<ProfileCard> with SingleTickerProviderStat
                             gradient: LinearGradient(
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
-                              colors: [Colors.transparent, Colors.black.withOpacity(0.8)],
+                              stops: const [0.0, 0.4, 1.0],
+                              colors: [
+                                Colors.transparent,
+                                Colors.black.withOpacity(0.3),
+                                Colors.black.withOpacity(0.9),
+                              ],
                             ),
                           ),
                           padding: const EdgeInsets.all(20),
@@ -166,23 +171,51 @@ class _ProfileCardState extends State<ProfileCard> with SingleTickerProviderStat
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               const SizedBox(height: 8),
-                              if (widget.user.interests.isNotEmpty)
+                              if (widget.user.interests.isNotEmpty) ...[
                                 Wrap(
-                                  spacing: 8,
-                                  children: widget.user.interests.take(3).map((interest) {
+                                  spacing: 6,
+                                  runSpacing: 6,
+                                  children: widget.user.interests.take(5).map((interest) {
                                     return Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 5),
                                       decoration: BoxDecoration(
-                                        color: Colors.white.withOpacity(0.3),
+                                        color: Colors.white.withOpacity(0.25),
                                         borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                          color: Colors.white.withOpacity(0.6),
+                                          width: 1,
+                                        ),
                                       ),
-                                      child: Text(
-                                        interest,
-                                        style: const TextStyle(color: Colors.white, fontSize: 12),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const Icon(Icons.tag,
+                                              size: 10, color: Colors.white70),
+                                          const SizedBox(width: 3),
+                                          Text(
+                                            interest,
+                                            style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 11,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ],
                                       ),
                                     );
                                   }).toList(),
                                 ),
+                                if (widget.user.interests.length > 5)
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 4),
+                                    child: Text(
+                                      '+${widget.user.interests.length - 5} more',
+                                      style: TextStyle(
+                                          color: Colors.white.withOpacity(0.7),
+                                          fontSize: 11),
+                                    ),
+                                  ),
+                              ],
                             ],
                           ),
                         ),
