@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // for haptic feedback
 import '../models/user_model.dart';
 
 class ProfileCard extends StatefulWidget {
   final UserModel user;
   final VoidCallback onSwipeLeft;
   final VoidCallback onSwipeRight;
-  
+
   const ProfileCard({
     super.key,
     required this.user,
@@ -14,243 +15,244 @@ class ProfileCard extends StatefulWidget {
   });
 
   @override
-  _ProfileCardState createState() => _ProfileCardState();
+  State<ProfileCard> createState() => _ProfileCardState();
 }
 
-class _ProfileCardState extends State<ProfileCard> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  Offset _dragStart = Offset.zero;
+class _ProfileCardState extends State<ProfileCard>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _resetController;
   Offset _dragOffset = Offset.zero;
   bool _isDragging = false;
-  
+  bool _isSwiping = false;
+
+  static const double _swipeThreshold = 120.0;
+
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this);
+    _resetController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 250),
+    );
+    _resetController.addListener(_onResetTick);
   }
-  
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-  
-  void _onPanStart(DragStartDetails details) {
-    _dragStart = details.localPosition;
-    _isDragging = true;
-  }
-  
-  void _onPanUpdate(DragUpdateDetails details) {
+
+  void _onResetTick() {
+    if (!_resetController.isAnimating) return;
+    final t = _resetController.value;
+    final eased = 1.0 - Curves.easeOutQuad.transform(t);
     setState(() {
-      _dragOffset = details.localPosition - _dragStart;
+      _dragOffset = Offset(_dragOffset.dx * eased, _dragOffset.dy * eased);
     });
-  }
-  
-  void _onPanEnd(DragEndDetails details) {
-    const double swipeThreshold = 100;
-    
-    if (_dragOffset.dx > swipeThreshold) {
-      // Swipe right (like)
-      _animateAndComplete(widget.onSwipeRight);
-    } else if (_dragOffset.dx < -swipeThreshold) {
-      // Swipe left (dislike)
-      _animateAndComplete(widget.onSwipeLeft);
-    } else {
-      // Reset position
-      setState(() {
-        _dragOffset = Offset.zero;
-        _isDragging = false;
-      });
+    if (_resetController.isCompleted) {
+      _dragOffset = Offset.zero;
+      _isDragging = false;
     }
   }
-  
-  void _animateAndComplete(VoidCallback callback) {
-    _controller.forward(from: 0);
-    Future.delayed(const Duration(milliseconds: 200), () {
-      callback();
-      setState(() {
-        _dragOffset = Offset.zero;
-        _isDragging = false;
-      });
+
+  @override
+  void dispose() {
+    _resetController.dispose();
+    super.dispose();
+  }
+
+  void _onPanStart(DragStartDetails details) {
+    if (_isSwiping) return;
+    _isDragging = true;
+  }
+
+  void _onPanUpdate(DragUpdateDetails details) {
+    if (_isSwiping) return;
+    setState(() {
+      _dragOffset += details.delta;
     });
   }
-  
-  double get _rotation => _dragOffset.dx / 20;
-  
+
+  void _onPanEnd(DragEndDetails details) {
+    if (_isSwiping) return;
+
+    final swipeDistance = _dragOffset.dx.abs();
+    if (swipeDistance >= _swipeThreshold) {
+      _isSwiping = true;
+      HapticFeedback.mediumImpact();
+
+      final offScreenOffset = Offset(
+        _dragOffset.dx > 0 ? 1000.0 : -1000.0,
+        0.0,
+      );
+      setState(() {
+        _dragOffset = offScreenOffset;
+      });
+
+      Future.delayed(const Duration(milliseconds: 200), () {
+        if (_dragOffset.dx > 0) {
+          widget.onSwipeRight();
+        } else {
+          widget.onSwipeLeft();
+        }
+      });
+    } else {
+      _resetController.forward(from: 0.0);
+    }
+  }
+
+  double get _rotation => (_dragOffset.dx / _swipeThreshold).clamp(-0.5, 0.5);
+
+  int get _age {
+    if (widget.user.dateOfBirth == null) return 0;
+    final now = DateTime.now();
+    final birth = widget.user.dateOfBirth!;
+    int age = now.year - birth.year;
+    if (now.month < birth.month ||
+        (now.month == birth.month && now.day < birth.day)) {
+      age--;
+    }
+    return age;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        return Transform.translate(
-          offset: _dragOffset,
-          child: Transform.rotate(
-            angle: _rotation,
-            child: GestureDetector(
-              onPanStart: _onPanStart,
-              onPanUpdate: _onPanUpdate,
-              onPanEnd: _onPanEnd,
-              child: Container(
-                margin: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 20,
-                      offset: const Offset(0, 10),
-                    ),
-                  ],
+    return Transform.translate(
+      offset: _dragOffset,
+      child: Transform.rotate(
+        angle: _rotation,
+        child: GestureDetector(
+          onPanStart: _onPanStart,
+          onPanUpdate: _onPanUpdate,
+          onPanEnd: _onPanEnd,
+          child: Container(
+            margin: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(24),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.15),
+                  blurRadius: 20,
+                  offset: const Offset(0, 8),
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Stack(
-                    children: [
-                      // Profile image
-                      if (widget.user.photos.isNotEmpty)
-                        Image.network(
-                          widget.user.photos[0],
-                          width: double.infinity,
-                          height: double.infinity,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) =>
-                              Container(color: Colors.grey.shade300),
-                        )
-                      else
-                        Container(color: Colors.grey.shade300),
-                      
-                      // Gradient overlay for text
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              stops: const [0.0, 0.4, 1.0],
-                              colors: [
-                                Colors.transparent,
-                                Colors.black.withOpacity(0.3),
-                                Colors.black.withOpacity(0.9),
-                              ],
-                            ),
-                          ),
-                          padding: const EdgeInsets.all(20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    widget.user.displayName ?? 'User',
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 28,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  if (widget.user.dateOfBirth != null)
-                                    Text(
-                                      '${DateTime.now().difference(widget.user.dateOfBirth!).inDays ~/ 365}',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 24,
-                                      ),
-                                    ),
-                                ],
-                              ),
-                              const SizedBox(height: 8),
-                              if (widget.user.bio != null)
-                                Text(
-                                  widget.user.bio!,
-                                  style: const TextStyle(color: Colors.white, fontSize: 16),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              const SizedBox(height: 8),
-                              if (widget.user.interests.isNotEmpty) ...[
-                                Wrap(
-                                  spacing: 6,
-                                  runSpacing: 6,
-                                  children: widget.user.interests.take(5).map((interest) {
-                                    return Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 5),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white.withOpacity(0.25),
-                                        borderRadius: BorderRadius.circular(20),
-                                        border: Border.all(
-                                          color: Colors.white.withOpacity(0.6),
-                                          width: 1,
-                                        ),
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          const Icon(Icons.tag,
-                                              size: 10, color: Colors.white70),
-                                          const SizedBox(width: 3),
-                                          Text(
-                                            interest,
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 11,
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  }).toList(),
-                                ),
-                                if (widget.user.interests.length > 5)
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 4),
-                                    child: Text(
-                                      '+${widget.user.interests.length - 5} more',
-                                      style: TextStyle(
-                                          color: Colors.white.withOpacity(0.7),
-                                          fontSize: 11),
-                                    ),
-                                  ),
-                              ],
-                            ],
-                          ),
-                        ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // ---------- IMAGE SECTION (60% of card height) ----------
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.48,
+                    width: double.infinity,
+                    child: widget.user.photos.isNotEmpty
+                        ? Image.network(
+                      widget.user.photos.first,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, __, ___) => Container(
+                        color: Colors.grey.shade300,
+                        child: const Icon(Icons.broken_image, size: 60),
                       ),
-                      
-                      // Swipe indicators
-                      if (_isDragging)
-                        Positioned(
-                          top: 50,
-                          left: _dragOffset.dx < -50 ? null : 20,
-                          right: _dragOffset.dx > 50 ? null : 20,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                            decoration: BoxDecoration(
-                              color: _dragOffset.dx > 0 ? Colors.green : Colors.red,
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: Text(
-                              _dragOffset.dx > 0 ? 'LIKE' : 'NOPE',
+                    )
+                        : Container(
+                      color: Colors.grey.shade300,
+                      child: const Icon(Icons.person, size: 80),
+                    ),
+                  ),
+
+                  // ---------- CONTENT SECTION (white background) ----------
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Name and age
+                        Row(
+                          children: [
+                            Text(
+                              widget.user.displayName ?? 'Anonymous',
                               style: const TextStyle(
-                                color: Colors.white,
+                                fontSize: 26,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 24,
+                                color: Colors.black87,
                               ),
                             ),
-                          ),
+                            const SizedBox(width: 8),
+                            if (_age > 0)
+                              Text(
+                                '$_age',
+                                style: const TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                          ],
                         ),
-                    ],
+                        const SizedBox(height: 6),
+
+                        // Bio
+                        if (widget.user.bio != null && widget.user.bio!.isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 12),
+                            child: Text(
+                              widget.user.bio!,
+                              style: const TextStyle(
+                                fontSize: 15,
+                                color: Colors.black54,
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+
+                        // Interests chips
+                        if (widget.user.interests.isNotEmpty) ...[
+                          const SizedBox(height: 4),
+                          Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
+                            children: widget.user.interests.take(5).map((interest) {
+                              return Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 6),
+                                decoration: BoxDecoration(
+                                  color: Colors.deepPurple.shade50,
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: Colors.deepPurple.shade100,
+                                    width: 0.5,
+                                  ),
+                                ),
+                                child: Text(
+                                  interest,
+                                  style: TextStyle(
+                                    color: Colors.deepPurple.shade700,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                          if (widget.user.interests.length > 5)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 6),
+                              child: Text(
+                                '+${widget.user.interests.length - 5} more',
+                                style: TextStyle(
+                                  color: Colors.grey.shade600,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                        ],
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

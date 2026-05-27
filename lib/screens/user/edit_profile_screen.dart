@@ -1,13 +1,14 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../../services/auth_service.dart';
 import '../../services/storage_service.dart';
-import '../../utils/error_handler.dart'; // optional but recommended
 
 class EditProfileScreen extends StatefulWidget {
   final bool isFirstTime;
@@ -28,14 +29,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late TextEditingController _bioController;
   late TextEditingController _interestsController;
 
-  final List<File> _selectedImages = [];
+  // Store selected images as File (mobile) or Uint8List (web)
+  final List<dynamic> _selectedImages = [];
   List<String> _existingImages = [];
   DateTime? _selectedDate;
   String? _selectedGender;
   String? _selectedSeeking;
 
   bool _isLoading = false;
-  bool _isSaving = false; // separate flag for saving action
+  bool _isSaving = false;
   bool _isDirty = false;
 
   String? _initialDisplayName;
@@ -166,12 +168,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Future<void> _pickImages() async {
     final picker = ImagePicker();
     final List<XFile> images = await picker.pickMultiImage();
-    if (images.isNotEmpty) {
-      setState(() {
-        _selectedImages.addAll(images.map((xfile) => File(xfile.path)));
-      });
-      _recomputeDirty();
+    if (images.isEmpty) return;
+
+    for (final x in images) {
+      if (kIsWeb) {
+        final bytes = await x.readAsBytes();
+        setState(() => _selectedImages.add(bytes));
+      } else {
+        setState(() => _selectedImages.add(File(x.path)));
+      }
     }
+    _recomputeDirty();
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -189,8 +196,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
   }
 
+  // ===================== ADVANCED SAVE PROFILE =====================
   Future<void> _saveProfile() async {
+    // 1. Form validation
     if (!_formKey.currentState!.validate()) return;
+    // 2. Prevent multiple simultaneous saves
+    if (_isSaving) return;
 
     setState(() {
       _isSaving = true;
@@ -201,22 +212,35 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     final userId = authService.currentUser!.uid;
 
     try {
-      // Upload new images
+      debugPrint('📌 Starting profile save for user: $userId');
+
+      // --- Upload new images (with timeout) ---
       List<String> allImageUrls = List.from(_existingImages);
       if (_selectedImages.isNotEmpty) {
-        final newUrls = await _storageService.uploadMultipleImages(_selectedImages, userId);
+        debugPrint('📌 Uploading ${_selectedImages.length} image(s)...');
+        final newUrls = await _storageService
+            .uploadMultipleImages(_selectedImages, userId)
+            .timeout(
+          const Duration(seconds: 45),
+          onTimeout: () => throw Exception('Image upload timed out after 45 seconds.'),
+        );
+        debugPrint('📌 Upload complete. New URLs: $newUrls');
         allImageUrls.addAll(newUrls);
       }
 
-      // Parse interests
+      // --- Parse interests ---
       List<String> interests = _interestsController.text
           .split(',')
           .map((i) => i.trim())
           .where((i) => i.isNotEmpty)
           .toList();
 
-      // Update user profile
-      await FirebaseFirestore.instance.collection('users').doc(userId).update({
+      // --- Update Firestore (with timeout) ---
+      debugPrint('📌 Updating Firestore document...');
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .update({
         'displayName': _displayNameController.text.trim(),
         'bio': _bioController.text.trim(),
         'dateOfBirth': _selectedDate?.toIso8601String(),
@@ -226,27 +250,42 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         'photos': allImageUrls,
         'isPrivate': _isPrivate,
         'updatedAt': FieldValue.serverTimestamp(),
-      });
+      })
+          .timeout(
+        const Duration(seconds: 15),
+        onTimeout: () => throw Exception('Firestore update timed out.'),
+      );
+      debugPrint('📌 Firestore update successful.');
 
+      // --- Refresh local user model ---
+      debugPrint('📌 Refreshing current user model...');
+      await authService.refreshCurrentUserModel();
+      debugPrint('📌 User model refreshed.');
+
+      // --- Success feedback ---
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Profile updated successfully!')),
+        const SnackBar(content: Text('Profile updated successfully!'), duration: Duration(seconds: 2)),
       );
 
-      // Refresh cached profile
-      await authService.refreshCurrentUserModel();
-
-      if (!mounted) return;
-      Navigator.pop(context);
+      // --- Navigate back (only if not first-time onboarding) ---
+      if (!widget.isFirstTime && mounted) {
+        debugPrint('📌 Navigating back.');
+        Navigator.pop(context);
+      } else if (widget.isFirstTime && mounted) {
+        debugPrint('📌 First-time profile complete, not popping automatically.');
+        // You can add navigation to next screen here if needed
+      }
     } catch (e, stackTrace) {
-      debugPrint('=== EditProfileScreen error ===');
-      debugPrint('Error: $e');
-      debugPrint('StackTrace: $stackTrace');
+      debugPrint('❌ ERROR in _saveProfile:');
+      debugPrint('   Error: $e');
+      debugPrint('   StackTrace: $stackTrace');
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Error updating profile: ${e.toString()}'),
+          content: Text('Error: ${e.toString()}'),
           backgroundColor: Colors.red,
+          duration: const Duration(seconds: 4),
         ),
       );
     } finally {
@@ -256,8 +295,53 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           _isLoading = false;
         });
         _recomputeDirty();
+        debugPrint('📌 Saving state reset.');
       }
     }
+  }
+
+  /// Helper to build preview image (works for both File and Uint8List)
+  Widget _buildImagePreview(dynamic imageData, {VoidCallback? onRemove}) {
+    ImageProvider imageProvider;
+    if (imageData is Uint8List) {
+      imageProvider = MemoryImage(imageData);
+    } else if (imageData is File) {
+      imageProvider = FileImage(imageData);
+    } else {
+      // Fallback – should never happen
+      imageProvider = const AssetImage('assets/placeholder.png');
+    }
+
+    return Stack(
+      children: [
+        Container(
+          margin: const EdgeInsets.only(right: 8),
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        if (onRemove != null)
+          Positioned(
+            top: 0,
+            right: 8,
+            child: CircleAvatar(
+              radius: 12,
+              backgroundColor: Colors.red,
+              child: IconButton(
+                icon: const Icon(Icons.close, size: 12, color: Colors.white),
+                onPressed: onRemove,
+                padding: EdgeInsets.zero,
+              ),
+            ),
+          ),
+      ],
+    );
   }
 
   @override
@@ -288,13 +372,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              // Photos section (unchanged)
+              // Photos section
               const Text('Photos', style: TextStyle(fontWeight: FontWeight.bold)),
               const SizedBox(height: 8),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
+                    // Existing images (URLs)
                     ..._existingImages.map((url) => Stack(
                       children: [
                         Container(
@@ -329,40 +414,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                       ],
                     )),
-                    ..._selectedImages.map((file) => Stack(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(right: 8),
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                              image: FileImage(file),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          top: 0,
-                          right: 8,
-                          child: CircleAvatar(
-                            radius: 12,
-                            backgroundColor: Colors.red,
-                            child: IconButton(
-                              icon: const Icon(Icons.close, size: 12, color: Colors.white),
-                              onPressed: () {
-                                setState(() {
-                                  _selectedImages.remove(file);
-                                });
-                                _recomputeDirty();
-                              },
-                              padding: EdgeInsets.zero,
-                            ),
-                          ),
-                        ),
-                      ],
-                    )),
+                    // Newly selected images (preview)
+                    ..._selectedImages.asMap().entries.map((entry) {
+                      int index = entry.key;
+                      dynamic img = entry.value;
+                      return _buildImagePreview(
+                        img,
+                        onRemove: () {
+                          setState(() {
+                            _selectedImages.removeAt(index);
+                          });
+                          _recomputeDirty();
+                        },
+                      );
+                    }),
+                    // Add button (max 6 total)
                     if (_existingImages.length + _selectedImages.length < 6)
                       GestureDetector(
                         onTap: _pickImages,
@@ -484,7 +550,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ),
               const SizedBox(height: 32),
 
-              // ✅ DEDICATED SAVE BUTTON
+              // Dedicated Save Button
               ElevatedButton.icon(
                 onPressed: (_isLoading || _isSaving) ? null : _saveProfile,
                 icon: (_isLoading || _isSaving)
