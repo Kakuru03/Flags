@@ -11,10 +11,13 @@ service cloud.firestore {
     }
 
     function isAdmin() {
+      // Admin flag is stored on the user's profile document.
       return isAuthenticated() &&
-        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) &&
-        get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.isAdmin == true;
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
     }
+
+
 
     // Users collection
     match /users/{userId} {
@@ -88,13 +91,10 @@ service cloud.firestore {
       allow update, delete: if isAdmin();
     }
 
-    // Admins collection
-    // Any authenticated user can create their OWN admin doc
-    // (the Dart code restricts this to the configured adminEmail only)
+    // Admins collection (legacy). Admin permissions are now derived from users/{uid}.isAdmin.
     match /admins/{adminId} {
-      allow read: if isAuthenticated() && (isOwner(adminId) || isAdmin());
-      allow create: if isAuthenticated() && isOwner(adminId);
-      allow update, delete: if isAdmin();
+      allow read, create, update, delete: if false;
     }
+
   }
 }

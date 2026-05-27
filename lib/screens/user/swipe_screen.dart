@@ -1,93 +1,130 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../services/match_service.dart';
 import '../../services/auth_service.dart';
 import '../../models/user_model.dart';
 import '../../widgets/profile_card.dart';
+import 'chat_screen.dart';
 
 class SwipeScreen extends StatefulWidget {
   const SwipeScreen({super.key});
 
   @override
-  _SwipeScreenState createState() => _SwipeScreenState();
+  State<SwipeScreen> createState() => _SwipeScreenState();
 }
 
 class _SwipeScreenState extends State<SwipeScreen> {
   final MatchService _matchService = MatchService();
-  List<UserModel> _profiles = [];
+  final Set<String> _swipedUserIds = {};
+  List<UserModel> _currentBatch = [];
   int _currentIndex = 0;
   bool _isLoading = true;
+  bool _isLoadingMore = false;
+  String? _error;
+  late String _currentUserId;
+  UserModel? _currentUser;
 
   @override
   void initState() {
     super.initState();
-    _loadProfiles();
+    _currentUserId = FirebaseAuth.instance.currentUser!.uid;
+    _loadInitialData();
   }
 
-  Future<void> _loadProfiles() async {
-    setState(() => _isLoading = true);
-    
-    final authService = Provider.of<AuthService>(context, listen: false);
-    final currentUser = await _getCurrentUser(authService.currentUser!.uid);
-    
-    if (currentUser != null) {
-      // Get manual swipe profiles
-      _profiles = await _matchService.getPotentialMatches(
-        authService.currentUser!.uid,
-        currentUser,
-      );
-      
-      // Also get auto-matched profiles
-      final autoMatches = await _matchService.getAutoMatches(
-        authService.currentUser!.uid,
-        currentUser,
-      );
-      
-      _profiles.addAll(autoMatches);
-      _profiles.shuffle(); // Mix manual and auto matches
+  Future<void> _loadInitialData() async {
+    setState(() {
+      _isLoading = true;
+      _error = null;
+    });
+    try {
+      _currentUser = await _fetchCurrentUser();
+      if (_currentUser == null) throw Exception('User data not found');
+      await _loadNextBatch(reset: true);
+    } catch (e) {
+      setState(() {
+        _error = e.toString();
+        _isLoading = false;
+      });
     }
-    
-    setState(() => _isLoading = false);
   }
 
-  Future<UserModel?> _getCurrentUser(String uid) async {
-    // Fetch current user from Firestore
-    // Implementation depends on your data structure
+  Future<UserModel?> _fetchCurrentUser() async {
+    final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(_currentUserId)
+        .get();
+    if (doc.exists) {
+      return UserModel.fromMap(_currentUserId, doc.data()!);
+    }
     return null;
   }
 
-  void _swipeLeft() {
-    if (_currentIndex < _profiles.length - 1) {
-      setState(() {
-        _currentIndex++;
-      });
-    } else {
-      _showNoMoreProfiles();
+  Future<void> _loadNextBatch({bool reset = false}) async {
+    if (_currentUser == null) return;
+    try {
+      final allMatches = await _matchService.getPotentialMatches(_currentUserId, _currentUser!);
+      final filtered = allMatches.where((u) => !_swipedUserIds.contains(u.uid)).toList();
+
+      if (reset) {
+        _currentBatch = filtered;
+        _currentIndex = 0;
+      } else {
+        _currentBatch.addAll(filtered);
+      }
+    } catch (e) {
+      if (!reset) rethrow;
+      setState(() => _error = e.toString());
+    } finally {
+      if (reset) setState(() => _isLoading = false);
+      setState(() => _isLoadingMore = false);
     }
   }
 
+  void _swipeLeft() async {
+    if (_currentIndex >= _currentBatch.length) return;
+    final dislikedUser = _currentBatch[_currentIndex];
+    _swipedUserIds.add(dislikedUser.uid);
+    _advanceToNext();
+  }
+
   void _swipeRight() async {
-    if (_currentIndex < _profiles.length) {
-      final likedUser = _profiles[_currentIndex];
-      
-      // Check if it's a match
-      final bool isMatch = await _matchService.checkAndCreateMatch(
-        FirebaseAuth.instance.currentUser!.uid,
-        likedUser.uid,
-      );
-      
-      if (isMatch) {
-        _showMatchDialog(likedUser);
-      }
-      
-      if (_currentIndex < _profiles.length - 1) {
-        setState(() {
-          _currentIndex++;
-        });
-      } else {
+    if (_currentIndex >= _currentBatch.length) return;
+    final likedUser = _currentBatch[_currentIndex];
+    _swipedUserIds.add(likedUser.uid);
+
+    final bool isMatch = await _matchService.checkAndCreateMatch(_currentUserId, likedUser.uid);
+    if (isMatch && mounted) {
+      _showMatchDialog(likedUser);
+    }
+    _advanceToNext();
+  }
+
+  void _advanceToNext() {
+    if (_currentIndex < _currentBatch.length - 1) {
+      setState(() => _currentIndex++);
+    } else {
+      _loadMore();
+    }
+  }
+
+  Future<void> _loadMore() async {
+    if (_isLoadingMore) return;
+    setState(() => _isLoadingMore = true);
+    try {
+      await _loadNextBatch(reset: false);
+      if (_currentBatch.isEmpty || _currentIndex >= _currentBatch.length) {
         _showNoMoreProfiles();
       }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to load more: $e'), backgroundColor: Colors.red),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isLoadingMore = false);
     }
   }
 
@@ -107,16 +144,13 @@ class _SwipeScreenState extends State<SwipeScreen> {
         content: Text('You and ${matchedUser.displayName} have liked each other!'),
         actions: [
           TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              // Navigate to chat
-            },
+            onPressed: () => Navigator.pop(context),
             child: const Text('Keep Swiping'),
           ),
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
-              // Navigate to chat screen
+              _navigateToChat(matchedUser);
             },
             child: const Text('Send Message'),
           ),
@@ -125,12 +159,50 @@ class _SwipeScreenState extends State<SwipeScreen> {
     );
   }
 
+  Future<void> _navigateToChat(UserModel matchedUser) async {
+    final matchId = await _getMatchId(matchedUser.uid);
+    if (matchId != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => ChatScreen(
+            matchId: matchId,
+            otherUserId: matchedUser.uid,
+            otherUserName: matchedUser.displayName ?? 'User',
+          ),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Could not open chat. Please try again.')),
+      );
+    }
+  }
+
+  Future<String?> _getMatchId(String otherUserId) async {
+    final firestore = FirebaseFirestore.instance;
+    final q1 = await firestore
+        .collection('matches')
+        .where('user1Id', isEqualTo: _currentUserId)
+        .where('user2Id', isEqualTo: otherUserId)
+        .limit(1)
+        .get();
+    if (q1.docs.isNotEmpty) return q1.docs.first.id;
+    final q2 = await firestore
+        .collection('matches')
+        .where('user1Id', isEqualTo: otherUserId)
+        .where('user2Id', isEqualTo: _currentUserId)
+        .limit(1)
+        .get();
+    return q2.docs.isNotEmpty ? q2.docs.first.id : null;
+  }
+
   void _showNoMoreProfiles() {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('No More Profiles'),
-        content: const Text('Check back later for new matches!'),
+        content: const Text('We\'ll notify you when new people join.'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
@@ -146,35 +218,63 @@ class _SwipeScreenState extends State<SwipeScreen> {
     if (_isLoading) {
       return const Center(child: CircularProgressIndicator());
     }
-    
-    if (_profiles.isEmpty) {
-      return const Center(
+    if (_error != null) {
+      return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.people_outline, size: 80, color: Colors.grey),
-            SizedBox(height: 20),
-            Text(
-              'No more profiles to show',
-              style: TextStyle(fontSize: 18, color: Colors.grey),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Check back later for new matches!',
-              style: TextStyle(color: Colors.grey),
+            const Icon(Icons.error_outline, size: 60, color: Colors.red),
+            const SizedBox(height: 16),
+            Text('Error: $_error'),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: _loadInitialData,
+              child: const Text('Retry'),
             ),
           ],
         ),
       );
     }
-    
+    if (_currentBatch.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.people_outline, size: 80, color: Colors.grey),
+            const SizedBox(height: 20),
+            const Text(
+              'No more profiles to show',
+              style: TextStyle(fontSize: 18, color: Colors.grey),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Check back later for new matches!',
+              style: TextStyle(color: Colors.grey),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _loadInitialData,
+              child: const Text('Refresh'),
+            ),
+          ],
+        ),
+      );
+    }
+
     return Stack(
       children: [
-        for (int i = _profiles.length - 1; i >= _currentIndex; i--)
+        for (int i = _currentBatch.length - 1; i >= _currentIndex; i--)
           ProfileCard(
-            user: _profiles[i],
+            user: _currentBatch[i],
             onSwipeLeft: _swipeLeft,
             onSwipeRight: _swipeRight,
+          ),
+        if (_isLoadingMore)
+          const Positioned(
+            bottom: 20,
+            left: 0,
+            right: 0,
+            child: Center(child: CircularProgressIndicator()),
           ),
       ],
     );

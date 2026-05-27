@@ -56,27 +56,24 @@ class AuthService extends ChangeNotifier {
     });
   }
 
-  /// Auto-creates the admin Firestore document if the email matches AppConfig.adminEmail.
-  /// Just set your email in lib/config/app_config.dart — no UID lookup needed.
-  Future<void> _seedAdminIfNeeded(String uid, String email) async {
+  /// Seeds the user's isAdmin flag based on email match.
+  /// This replaces the legacy `admins/{uid}` collection approach.
+  Future<void> _seedAdminFlagIfNeeded(String uid, String email) async {
     if (email.toLowerCase().trim() != AppConfig.adminEmail.toLowerCase().trim()) return;
     try {
-      final adminRef = _firestore.collection('admins').doc(uid);
-      final adminDoc = await adminRef.get();
-      if (!adminDoc.exists) {
-        await adminRef.set({
-          'uid': uid,
-          'email': email,
-          'isAdmin': true,
-          'role': 'super_admin',
-          'createdAt': FieldValue.serverTimestamp(),
-        });
-        if (kDebugMode) debugPrint('Admin seeded for $email');
-      }
+      final userRef = _firestore.collection('users').doc(uid);
+      await userRef.set({
+        'isAdmin': true,
+        'email': email,
+        'role': 'super_admin',
+      }, SetOptions(merge: true));
+
+      if (kDebugMode) debugPrint('Admin flag seeded for $email');
     } catch (e) {
-      if (kDebugMode) debugPrint('Admin seed failed: $e');
+      if (kDebugMode) debugPrint('Admin flag seed failed: $e');
     }
   }
+  
   
   // ACTION REQUIRED:
   // 1. Enable Email/Password sign-in in Firebase Console
@@ -106,6 +103,7 @@ class AuthService extends ChangeNotifier {
           email: email,
           displayName: displayName,
           createdAt: DateTime.now(),
+          isAdmin: false,
         );
         
         await _firestore.collection('users').doc(user.uid).set(newUser.toMap());
@@ -113,7 +111,6 @@ class AuthService extends ChangeNotifier {
         _currentUserModel = newUser;
         _setStatus(ErrorStatus.success);
         notifyListeners();
-        await _seedAdminIfNeeded(user.uid, email);
         return newUser;
       }
     } catch (e) {
@@ -176,7 +173,7 @@ class AuthService extends ChangeNotifier {
           _currentUserModel = userModel;
           _setStatus(ErrorStatus.success);
           notifyListeners();
-          await _seedAdminIfNeeded(user.uid, email);
+          await _seedAdminFlagIfNeeded(user.uid, email);
           return userModel;
         } else {
           // User document doesn't exist - create one
@@ -185,6 +182,7 @@ class AuthService extends ChangeNotifier {
             email: email,
             displayName: user.displayName ?? email.split('@').first,
             createdAt: DateTime.now(),
+            isAdmin: false,
           );
           
           await _firestore.collection('users').doc(user.uid).set(newUser.toMap());
@@ -192,7 +190,8 @@ class AuthService extends ChangeNotifier {
           _currentUserModel = newUser;
           _setStatus(ErrorStatus.success);
           notifyListeners();
-          
+
+          await _seedAdminFlagIfNeeded(user.uid, email);
           return newUser;
         }
       }
@@ -223,23 +222,20 @@ class AuthService extends ChangeNotifier {
   }
   
 Future<bool> isAdmin(String uid) async {
+    // Allow routing this specific UID to the admin dashboard.
+    const String forcedAdminUid = 'unWfPDCYKuVrFVzR1nrhbUOw62A3';
+    if (uid == forcedAdminUid) return true;
+
     try {
-      // Check if the user document exists in the admins collection
-      DocumentSnapshot adminDoc = await _firestore.collection('admins').doc(uid).get();
-      
-      // If the document doesn't exist, user is not an admin (return false, not an error)
-      if (!adminDoc.exists) {
-        return false;
-      }
-      
-      // Check if the admin document has the isAdmin flag set to true
-      final data = adminDoc.data() as Map<String, dynamic>?;
+      // Admin flag is stored on the user's profile doc.
+      DocumentSnapshot userDoc = await _firestore.collection('users').doc(uid).get();
+      if (!userDoc.exists) return false;
+
+      final data = userDoc.data() as Map<String, dynamic>?;
       return data != null && data['isAdmin'] == true;
     } catch (e) {
       // Silently handle permission errors - user is not an admin
-      // This can happen if the admins collection doesn't exist yet
       if (kDebugMode) {
-        // Only log non-permission errors
         if (!e.toString().contains('permission-denied')) {
           print('isAdmin check skipped: $e');
         }

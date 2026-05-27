@@ -20,6 +20,7 @@ class UserModel {
   final int reportCount;
   final bool isBanned;
   final String? banReason;
+  final bool isAdmin;
   
   UserModel({
     required this.uid,
@@ -41,6 +42,7 @@ class UserModel {
     this.reportCount = 0,
     this.isBanned = false,
     this.banReason,
+    this.isAdmin = false,
   });
   
   Map<String, dynamic> toMap() {
@@ -64,6 +66,7 @@ class UserModel {
       'reportCount': reportCount,
       'isBanned': isBanned,
       'banReason': banReason,
+      'isAdmin': isAdmin,
     };
   }
   
@@ -106,6 +109,7 @@ class UserModel {
       reportCount: map['reportCount'] ?? 0,
       isBanned: map['isBanned'] ?? false,
       banReason: map['banReason'],
+      isAdmin: map['isAdmin'] ?? false,
     );
   }
 }

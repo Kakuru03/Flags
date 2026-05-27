@@ -3,7 +3,7 @@ class AppConfig {
   // ADMIN SETUP: change this to your email address.
   // Register with this email in the app and you become admin.
   // ─────────────────────────────────────────────────────────────
-  static const String adminEmail = 'princekakuru03@gmail.com';
+  static const String adminEmail = 'allan05@gmail.com';
 
   static const String firebaseApiKey = "AIzaSyD7SCL47I6u62yOILbSTDZf9m6WBy64Dw4";
   static const String firebaseAuthDomain = "flags-1a8df.firebaseapp.com";
